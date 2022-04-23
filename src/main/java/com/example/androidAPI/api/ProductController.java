@@ -1,6 +1,7 @@
 package com.example.androidAPI.api;
 
 import com.example.androidAPI.entity.Product;
+import com.example.androidAPI.model.dto.ProductDto;
 import com.example.androidAPI.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api/product")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;
@@ -21,7 +23,7 @@ public class ProductController {
         List<Product> products = productRepository.findByActive();
         return ResponseEntity.ok(products);
     }
-
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity<?> getProductById(@PathVariable("id") String id) {
         Product product = productRepository.findById(id).orElse(null);

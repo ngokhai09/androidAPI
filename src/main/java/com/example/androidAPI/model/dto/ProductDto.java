@@ -20,6 +20,6 @@ public class ProductDto {
     private String create_person;
     private boolean is_active;
     private boolean is_delete;
-
+    private int price;
 
 }

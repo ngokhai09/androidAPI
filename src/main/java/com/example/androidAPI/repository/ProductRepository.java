@@ -12,10 +12,12 @@ import java.util.Calendar;
 import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, String> {
-    @Query(value = "select * from san_pham where is_active = 1", nativeQuery = true)
+    @Query(value = "select san_pham.MaSP, TenSP, GTSP, Gia, nguoi_tao, is_active, is_delete, sl, ma_loai, time_create, time_update, giasp.ma_gia from san_pham inner join giasp on san_pham.MaSP = giasp.masp where is_active =1", nativeQuery = true)
     List<Product> findByActive();
-    @Query(value = "select * from san_pham where Day(Time_Create) = :day and Month(Time_Create) = :month and Year(Time_Create) = :year", nativeQuery = true)
+    @Query(value = "select san_pham.MaSP, TenSP, GTSP, Gia, nguoi_tao, is_active, is_delete, sl, ma_loai, time_create, time_update, giasp.ma_gia, url from san_pham inner join giasp on san_pham.MaSP = giasp.masp inner join AnhSP on san_pham.MaSP = AnhSP.MaSP where Day(Time_Create) = :day and Month(Time_Create) = :month and Year(Time_Create) = :year", nativeQuery = true)
     List<Product> findByDay(@Param("day") String day, @Param("month") String month, @Param("year") String year);
-    @Query(value = "select * from san_pham where MaLoai = :MaLoai", nativeQuery = true)
+    @Query(value = "select san_pham.MaSP, TenSP, GTSP, Gia, nguoi_tao, is_active, is_delete, sl, ma_loai, time_create, time_update, giasp.ma_gia, url from san_pham inner join giasp on san_pham.MaSP = giasp.masp inner join AnhSP on san_pham.MaSP = AnhSP.MaSP where MaLoai = :MaLoai", nativeQuery = true)
     List<Product> findByCatagory(@Param("MaLoai") String MaLoai);
+    @Query(value = "select san_pham.MaSP, TenSP, GTSP, Gia, nguoi_tao, is_active, is_delete, sl, ma_loai, time_create, time_update, giasp.ma_gia, url from san_pham inner join giasp on san_pham.MaSP = giasp.masp inner join AnhSP on san_pham.MaSP = AnhSP.MaSP where TenSP = :Name", nativeQuery = true)
+    List<Product> findByName(@Param("Name") String Name);
 }

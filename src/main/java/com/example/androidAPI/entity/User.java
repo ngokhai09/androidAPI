@@ -1,34 +1,32 @@
 package com.example.androidAPI.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "SanPham")
-public class Product {
+@Table(name = "KhachHang")
+public class User {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "MaSP")
+    @Column(name = "MaKh")
     private String id;
-    @Column(name = "TenSP")
+    @Column(name = "HoTen")
     private String name;
-    @Column(name = "GTSP")
-    private String description;
-    @Column(name = "MaLoai")
-    private String type;
-    @Column(name = "SL")
-    private Integer number;
+    @Column(name = "GioiTinh")
+    private String sex;
+    @Column(name = "Tuoi")
+    private String age;
+    @Column(name = "Email")
+    private String email;
+    @Column(name = "SDT")
+    private String phoneNumber;
     @Column(name = "Time_Create")
     private String time_create;
     @Column(name = "Time_Update")
@@ -39,10 +37,10 @@ public class Product {
     private boolean is_active;
     @Column(name = "isDelete")
     private boolean is_delete;
-    @OneToOne()
-    @JoinColumn(name="MaGia")
-    private Price price;
-    @OneToOne()
-    @JoinColumn(name="MaSP")
-    private Image image;
+    @Column(name="TaiKhoan")
+    private String userName;
+    @Column(name="MatKhau")
+    private String password;
+    @Column(name="DiaChi")
+    private String address;
 }

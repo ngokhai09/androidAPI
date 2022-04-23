@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/news")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class NewsController {
     @Autowired
     NewsRepository newsRepository;
